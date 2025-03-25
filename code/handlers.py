@@ -6,6 +6,10 @@ from modules.rules import get_rule  # импортируем из modules/rules
 
 router = Router()
 
+##########
+## Main ##
+##########
+
 @router.message(F.text.in_(["/start", "/help"]))
 async def send_welcome(message: Message):
     # Регистрация chat_id в базе данных
@@ -33,6 +37,10 @@ async def send_commands(message: Message):
         parse_mode="HTML"
     )
 
+###########
+## Rules ##
+###########
+
 @router.message(F.text.startswith("!"))
 async def send_rule(message: Message):
     # Проверка на бан
@@ -43,3 +51,7 @@ async def send_rule(message: Message):
     # Получение правила по команде
     rule = get_rule(message.text.strip())
     await message.answer(rule)
+
+###########
+## Other ##
+###########
