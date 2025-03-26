@@ -96,3 +96,14 @@ def get_top_cookie():
     top_users = cursor.fetchall()
     conn.close()
     return top_users
+
+def get_total_weight(user_id):
+    conn = sqlite3.connect("DataBase.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT ROUND(total_weight, 1) FROM cookie WHERE user_id = ?", (user_id,))
+    result = cursor.fetchone()
+    conn.close()
+    
+    if result:
+        return result[0]
+    return 0  # Если пользователь не найден, возвращаем 0

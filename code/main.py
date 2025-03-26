@@ -1,13 +1,12 @@
-# main.py
 import asyncio
 import sqlite3
 from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import Message
-from config import TOKEN
-from handlers import router
-from database import create_db, add_chat_id, is_banned
-from modules.rules import get_rule  # импортируем из modules/rules
+from service.config import TOKEN
+from service.handlers import router
+from service.database import create_db, add_chat_id, is_banned
+from modules.rules import get_rule
 from modules.cookie_game import router as cookie_router
 
 # Инициализация бота и диспетчера
@@ -20,7 +19,6 @@ dp.include_router(cookie_router)
 create_db()
 
 async def main():
-    """Запускает бота с использованием polling."""
     print("Бот запускается...")
     await dp.start_polling(bot)
 

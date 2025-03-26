@@ -1,7 +1,7 @@
 # handlers.py
 from aiogram import Router, F
 from aiogram.types import Message
-from database import add_chat_id, is_banned
+from service.database import add_chat_id, is_banned
 from modules.rules import get_rule  # импортируем из modules/rules
 
 router = Router()
@@ -55,3 +55,5 @@ async def send_rule(message: Message):
 ###########
 ## Other ##
 ###########
+
+##
